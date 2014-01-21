@@ -431,6 +431,27 @@ function localStorageDB(db_name) {
 
 			return result;
 		},
+		
+		/* Create a table using List of Objects @ [{k:v,k:v},{k:v,k:v},etc] */
+		createTableWithData: function(table_name, data, indexes) {
+			if(typeof data !== 'object')
+				error("Data supplied isn't in object form. Example: [{k:v,k:v},{k:v,k:v},etc]");
+
+			fields = Object.keys(data['0']);
+			
+			if( this.createTable(table_name,fields,indexes) )
+			{
+				this.commit();
+				for (var i=0;i<data.length;i++)
+				{
+					if(!insert(table_name,data[i]))
+						error("Failed to insert record: ["+JSON.stringify(data[i])+"]");
+				}
+				this.commit();
+			}
+
+			return true;
+		},
 
 		// drop a table
 		dropTable: function (table_name) {
