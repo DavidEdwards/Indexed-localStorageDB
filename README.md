@@ -23,4 +23,4 @@ The performances for medium/large data extraction/update from/to your localStora
 
 # Tests / Performance gain
 
-Check this link http://jsperf.com/indexed-localstoragedb/2 to see the performance gain at his best
+Check this link http://jsperf.com/indexed-localstoragedb/14 to see the performance gain at his best
